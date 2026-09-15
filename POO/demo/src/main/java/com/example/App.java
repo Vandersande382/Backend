@@ -36,32 +36,65 @@ public class App {
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-System.out.print(
-""        Scanner sc = new Scanner(System.in);
-        int opcion = -1;
+
+
+        Scanner sc = new Scanner(System.in);
+        int opcion = 0;
         
         do{ 
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            
-        } while(opcion != 0);""
-);
+            System.out.println("Ingresar una opcion entre el 1 y 5, ingresar -1 para terminar");
+            System.out.println("1- Obtener puntos totales de los clientes");
+            System.out.println("2- Obtener los puntos de cada cliente");
+            System.out.println("3- Obtener la cantidad de clientes mayores a una edad");
+            System.out.println("4- Obtener los primeros 10 clientes");
+            System.out.println("5- Obtener la cantidad total de posteos de todos los clientes");
+            System.out.println("Ingrese su opcion: ");            
+            opcion = sc.nextInt();
 
-        for (int i = 0; i < 10; i++ ){
-            System.out.println(clientes.get(i));
-        }
 
-        int puntosTotales = 0;
-        for (Cliente cliente : clientes) {
-            System.out.println("El cliente con dni : " + cliente.getDni() +
-                    " tiene: " + cliente.calcularPuntuacion() + " puntos");
-            puntosTotales += cliente.calcularPuntuacion();
-        }
-        System.out.println("puntos totales: " + puntosTotales);
+            if(opcion == 1){
+
+                int puntosTotales = 0;
+
+                for (Cliente cliente : clientes) {
+                puntosTotales += cliente.calcularPuntuacion();
+                     }
+                System.out.println("puntos totales: " + puntosTotales);
+            }
+                
+            if(opcion == 2){
+
+                int puntosTotales = 0;
+        
+                for (Cliente cliente : clientes) {
+                    
+                    System.out.println("El cliente con dni : " + cliente.getDni() +
+                                       " tiene: " + cliente.calcularPuntuacion() + 
+                                       " puntos");
+                }
+            }
+
+            if(opcion == 3){
+                System.out.println("Ingrese la edad a comparar");
+                int edad = sc.nextInt();
+                int cantidadMayores = contarMayoresDe(edad, clientes);
+                System.out.println("Cantidad de clientes mayores a " + edad + ": " + cantidadMayores);
+            }
+
+            if(opcion == 4){
+                for (int i = 0; i < 10; i++ ){
+                    System.out.println(clientes.get(i));
+                }
+            }
+
+            if(opcion == 5){
+                int totalPosteos = totalPosteos(clientes);
+                System.out.println("Cantidad total de posteos de todos los clientes: " + totalPosteos);
+            }
+
+        } while(opcion != -1);
     }
+    
 
     public static int contarMayoresDe(int edad, List<Cliente> clientes) {
         int contador = 0;
